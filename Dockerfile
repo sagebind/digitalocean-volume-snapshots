@@ -7,6 +7,6 @@ RUN apk --no-cache add coreutils && \
     wget -q -O- https://github.com/digitalocean/doctl/releases/download/v${VERSION}/doctl-${VERSION}-linux-amd64.tar.gz | tar xzf - && \
     mv doctl /usr/local/bin/
 
-COPY snapshot.sh /etc/periodic/15min/snapshot
+COPY snapshot.sh /etc/periodic/weekly/snapshot
 
 CMD ["/usr/sbin/crond", "-f", "-d6"]
