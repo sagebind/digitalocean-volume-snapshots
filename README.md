@@ -1,2 +1,3 @@
-# digitalocean-volume-snapshots
-Script to maintain volume snapshots automatically 
+# DigitalOcean Volume Snapshots
+
+Script to maintain volume snapshots automatically.
