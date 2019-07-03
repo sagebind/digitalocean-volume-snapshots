@@ -8,7 +8,7 @@ max_age_ms=$(expr $MAX_AGE \* 24 \* 60 \* 60 \* 1000)
 echo "Creating new snapshots"
 
 doctl compute volume list --format ID,Name --no-header | while read id name; do
-    doctl compute volume snapshot $id --snapshot-name "$name-$now"
+    echo doctl compute volume snapshot $id --snapshot-name "$name-$now"
 done
 
 echo "Deleting snapshots older than $MAX_AGE days"
@@ -18,6 +18,8 @@ doctl compute snapshot list --resource volume --format ID,Name --no-header | whi
     age=$(expr $now -  $timestamp)
 
     if [ $age -gt $max_age_ms ]; then
-        doctl compute snapshot delete $id
+        echo "Deleting snapshot $id"
+        printf 'y\n' | doctl compute snapshot delete $id
+        echo
     fi
 done
